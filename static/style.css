@@ -1,0 +1,78 @@
+.bodycalc{
+    background: darksalmon;
+    font-family: Courier;
+}
+.maincontainer{
+    width: 400px;
+    margin: auto;
+    padding: 0;
+    padding-bottom: 10px;
+    background: #cfd8ff;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow:
+            rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+            rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+.button{
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    padding: 0px;
+    font-family: Courier;
+    font-size: larger;
+}
+.indicator{
+    margin=: 0;
+    padding: 0;
+    background: rgb(75, 0, 20);
+    font-size: 45px;
+    font-family: Digital-7;
+    text-align: left;
+    color: rgb(255, 73, 73);
+    text-shadow:
+            -1px 0 rgb(75, 0, 20),
+            0 1px rgb(75, 0, 20),
+            1px 0 rgb(75, 0, 20),
+            0 -1px rgb(75, 0, 20),
+            0px 0px 7px #ff2d2d;
+}
+.keyboard{
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+.row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+@font-face {
+    font-family: Calculator;
+    src: url(font/Calculator.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Digital-7;
+    src: url(font/Digital-7.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: Dited;
+    src: url(font/Dited.otf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: VT323-Regular;
+    src: url(font/VT323-Regular.ttf) format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}

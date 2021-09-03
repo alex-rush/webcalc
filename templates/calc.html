@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+    <title>web aplication calculator</title>
+</head>
+<body class="bodycalc">
+    <div class="maincontainer">
+        <h1>SIMPLE CALCULATOR</h1>
+        <iframe name="indicator" class="indicator" width="350px" height="60px" scrolling="no" src="/static/default.html"></iframe>
+        <div class="keyboard">
+            <div class="row">
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="C" hidden>
+                    <button type="submit" class="button">C</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="<" hidden>
+                    <button type="submit" class="button"><-</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="M" hidden>
+                    <button type="submit" class="button" disabled>M</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="" hidden>
+                    <button type="submit" class="button" disabled>&#8730;</button>
+                </form>
+            </div>
+            <div class="row">
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="7" hidden>
+                    <button type="submit" class="button">7</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="8" hidden>
+                    <button type="submit" class="button">8</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="9" hidden>
+                    <button type="submit" class="button">9</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="*" hidden>
+                    <button type="submit" class="button">*</button>
+                </form>
+            </div>
+            <div class="row">
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="4" hidden>
+                    <button type="submit" class="button">4</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="5" hidden>
+                    <button type="submit" class="button">5</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="6" hidden>
+                    <button type="submit" class="button">6</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="-" hidden>
+                    <button type="submit" class="button">-</button>
+                </form>
+            </div>
+            <div class="row">
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="1" hidden>
+                    <button type="submit" class="button">1</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="2" hidden>
+                    <button type="submit" class="button">2</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="3" hidden>
+                    <button type="submit" class="button">3</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="+" hidden>
+                    <button type="submit" class="button">+</button>
+                </form>
+            </div>
+            <div class="row">
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="0" hidden>
+                    <button type="submit" class="button">0</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="." hidden>
+                    <button type="submit" class="button">.</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="/" hidden>
+                    <button type="submit" class="button">/</button>
+                </form>
+                <form action="/count" method="post" target="indicator">
+                    <input name="number" type="text" value="=" hidden>
+                    <button type="submit" class="button">=</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
