@@ -52,17 +52,9 @@
     align-content: space-around;
     flex-wrap: wrap;
 }
-/*
 @font-face {
     font-family: Digital-7;
     src: url("Digital-7.ttf") format("truetype");
-    font-style: normal;
-    font-weight: normal;
-}
-*/
-@font-face {
-    font-family: Digital-7;
-    src: asset-url("Digital-7.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
