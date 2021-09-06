@@ -52,27 +52,10 @@
     align-content: space-around;
     flex-wrap: wrap;
 }
-@font-face {
-    font-family: Calculator;
-    src: url(font/Calculator.ttf) format("truetype");
-    font-style: normal;
-    font-weight: normal;
-}
+
 @font-face {
     font-family: Digital-7;
-    src: url(font/Digital-7.ttf) format("truetype");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: Dited;
-    src: url(font/Dited.otf) format("truetype");
-    font-style: normal;
-    font-weight: normal;
-}
-@font-face {
-    font-family: VT323-Regular;
-    src: url(font/VT323-Regular.ttf) format("truetype");
+    src: url(Digital-7.ttf) format("truetype");
     font-style: normal;
     font-weight: normal;
 }
