@@ -8,55 +8,55 @@ actions = ['+', '-', '*', '/']
 app = Flask(__name__)
 
 
-def calculating(number):
+def calculating(tally):
     """операции вычисления"""
-    actions = ['+', '-', '*', '/']
+    global actions
 
     try:
-        if number[-1] in actions:  # если выражение вида только 'число' и 'действие'
-            number = number + number[:-1]
+        if tally[-1] in actions:  # если выражение вида только 'число' и 'действие'
+            tally = tally + tally[:-1]
 
-        if '.' in number:  # вычисления для чисел с точкой
+        if '.' in tally:  # вычисления для чисел с точкой
             for action in actions:
-                if action in number:
-                    number = number.split(action)
-                    dec1 = Decimal(number[0])
-                    dec2 = Decimal(number[1])
+                if action in tally:
+                    tally = tally.split(action)
+                    dec1 = Decimal(tally[0])
+                    dec2 = Decimal(tally[1])
                     if action == '+':
-                        number = str(dec1 + dec2)
+                        tally = str(dec1 + dec2)
                     elif action == '-':
-                        number = str(dec1 - dec2)
+                        tally = str(dec1 - dec2)
                     elif action == '*':
-                        number = str(dec1 * dec2)
+                        tally = str(dec1 * dec2)
                     elif action == '/':
-                        if number[1] == '0':
-                            number = 'ERROR'
+                        if tally[1] == '0':
+                            tally = 'ERROR'
                         else:
-                            number = str(dec1 / dec2)
-            if number[-1] == '0' and number[-2] == '.':  # если после точки только ноль - вывод числа без дробной части
-                number = number[:-2]
+                            tally = str(dec1 / dec2)
+            if tally[-1] == '0' and tally[-2] == '.':  # если после точки только ноль - вывод числа без дробной части
+                tally = tally[:-2]
         else:  # вычисления для целых чисел
             for action in actions:
-                if action in number:
-                    number = number.split(action)
+                if action in tally:
+                    tally = tally.split(action)
                     if action == '+':
-                        number = str(int(number[0]) + int(number[1]))
+                        tally = str(int(tally[0]) + int(tally[1]))
                     elif action == '-':
-                        number = str(int(number[0]) - int(number[1]))
+                        tally = str(int(tally[0]) - int(tally[1]))
                     elif action == '*':
-                        number = str(int(number[0]) * int(number[1]))
+                        tally = str(int(tally[0]) * int(tally[1]))
                     elif action == '/':
-                        if number[1] == '0':
-                            number = 'ERROR'
+                        if tally[1] == '0':
+                            tally = 'ERROR'
                         else:
-                            number = str(int(number[0]) / int(number[1]))
-                        if number[-1] == '0' and number[-2] == '.': # если после точки только ноль - вывод числа без дробной части
-                            number = number[:-2]
+                            tally = str(int(tally[0]) / int(tally[1]))
+                        if tally[-1] == '0' and tally[-2] == '.': # если после точки только ноль - вывод числа без дробной части
+                            tally = tally[:-2]  # TODO нолей может быть много
 
-    except:
-        number = 'ERROR'
-    print(number)
-    return number
+    except Exception:
+        tally = 'ERROR'
+        print('произошла ошибка')
+    return tally
 
 
 def responser(result):
@@ -84,7 +84,7 @@ def count():
         return responser(number)
     elif data == '<':
         number = number[:-1]
-    elif data == '.':  # TODO доработать ввод чисел с точкой
+    elif data == '.':
         if '.' in number:
             dot = number.count('.')
             for act in actions:
@@ -100,7 +100,7 @@ def count():
         resp = make_response(render_template('indicator.html', number=result))
         resp.set_cookie('calc_cook', number)
         return resp
-    elif data == '+' or data == '-' or data == '*' or data == '/':  # TODO обсчет длинных выражений
+    elif data == '+' or data == '-' or data == '*' or data == '/':
         number = calculating(number)+data
         return responser(number)
     else:
