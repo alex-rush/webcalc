@@ -82,6 +82,10 @@ def count():
         number = number[:-1]
     elif data == '.':  # TODO доработать ввод чисел с точкой
         if '.' in number:
+            dot = number.count('.')
+            for act in actions:
+                if act in number and dot < 2:
+                    number += data
             return responser(number)
         else:
             number += data
