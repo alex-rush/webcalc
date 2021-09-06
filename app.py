@@ -1,5 +1,7 @@
-# 29-08-21
+# 06-09-21
 from flask import Flask, render_template, request, make_response
+from decimal import Decimal
+
 
 number = ''  # основная переменная для хранения выражения(экрана калькулятора)
 actions = ['+', '-', '*', '/']
@@ -18,17 +20,19 @@ def calculating(number):
             for action in actions:
                 if action in number:
                     number = number.split(action)
+                    dec1 = Decimal(number[0])
+                    dec2 = Decimal(number[1])
                     if action == '+':
-                        number = str(float(number[0]) + float(number[1]))
+                        number = str(dec1 + dec2)
                     elif action == '-':
-                        number = str(float(number[0]) - float(number[1]))
+                        number = str(dec1 - dec2)
                     elif action == '*':
-                        number = str(float(number[0]) * float(number[1]))
+                        number = str(dec1 * dec2)
                     elif action == '/':
                         if number[1] == '0':
                             number = 'ERROR'
                         else:
-                            number = str(float(number[0]) / float(number[1]))
+                            number = str(dec1 / dec2)
             if number[-1] == '0' and number[-2] == '.':  # если после точки только ноль - вывод числа без дробной части
                 number = number[:-2]
         else:  # вычисления для целых чисел
@@ -46,10 +50,12 @@ def calculating(number):
                             number = 'ERROR'
                         else:
                             number = str(int(number[0]) / int(number[1]))
-                        if number[-1] == '0' and number[-2] == '.':  # после точки только ноль - вывод целого числа
+                        if number[-1] == '0' and number[-2] == '.': # если после точки только ноль - вывод числа без дробной части
                             number = number[:-2]
+
     except:
         number = 'ERROR'
+    print(number)
     return number
 
 
@@ -68,9 +74,7 @@ def calculator():
 
 @app.route('/count', methods=['POST'])  # web application calculator
 def count():
-    """обработка нажимаемых кнопок"""
     global number
-    global actions
     data = request.form.get('number')
     number = request.cookies.get('calc_cook')
     if number == 'HELLO':
