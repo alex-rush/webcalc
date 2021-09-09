@@ -4,7 +4,7 @@ from decimal import Decimal
 
 
 number = ''  # основная переменная для хранения выражения(экрана калькулятора)
-actions = ['+', '-', '*', '/']
+actions = ['+', '-', '*', '/', 'sqrt']
 app = Flask(__name__)
 
 
