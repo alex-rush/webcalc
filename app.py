@@ -1,7 +1,7 @@
 # 06-09-21
 from flask import Flask, render_template, request, make_response
 from decimal import Decimal
-
+from math import sqrt
 
 number = ''  # основная переменная для хранения выражения(экрана калькулятора)
 actions = ['+', '-', '*', '/', 'sqrt']
@@ -13,10 +13,10 @@ def calculating(tally):
     global actions
 
     try:
-        if tally[-1] in actions:  # если выражение вида только 'число' и 'действие'
-            tally = tally + tally[:-1]
-
-        if '.' in tally:  # вычисления для чисел с точкой
+        if len(tally) >= 4:  # извлечение квадратного корня начало
+            if tally[-4:] == 'sqrt':
+                tally = str(sqrt(float(tally[:-4])))
+        elif '.' in tally:  # вычисления для чисел с точкой
             for action in actions:
                 if action in tally:
                     tally = tally.split(action)
@@ -50,12 +50,11 @@ def calculating(tally):
                             tally = 'ERROR'
                         else:
                             tally = str(int(tally[0]) / int(tally[1]))
-                        if tally[-1] == '0' and tally[-2] == '.': # если после точки только ноль - вывод числа без дробной части
+                        # если после '.' только 0 - вывод числа без дробной части
+                        if tally[-1] == '0' and tally[-2] == '.':
                             tally = tally[:-2]  # TODO нолей может быть много
-
     except Exception:
         tally = 'ERROR'
-        print('произошла ошибка')
     return tally
 
 
@@ -103,6 +102,13 @@ def count():
     elif data == '+' or data == '-' or data == '*' or data == '/':
         number = calculating(number)+data
         return responser(number)
+    elif data == 'sqrt':
+        number += data
+        result = calculating(number)
+        number = ''
+        resp = make_response(render_template('indicator.html', number=result))
+        resp.set_cookie('calc_cook', number)
+        return resp
     else:
         number += data
     return responser(number)
