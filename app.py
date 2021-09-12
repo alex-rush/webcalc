@@ -4,7 +4,7 @@ from decimal import Decimal
 from math import sqrt
 
 number = ''  # основная переменная для хранения выражения(экрана калькулятора)
-actions = ['+', '-', '*', '/', 'sqrt']
+actions = ['+', '-', '*', '/']
 app = Flask(__name__)
 
 
@@ -13,10 +13,13 @@ def calculating(tally):
     global actions
 
     try:
-        if len(tally) >= 4:  # извлечение квадратного корня начало
-            if tally[-4:] == 'sqrt':
-                tally = str(sqrt(float(tally[:-4])))
-        elif '.' in tally:  # вычисления для чисел с точкой
+        # if len(tally) >= 4:  # извлечение квадратного корня начало
+        #     if tally[-4:] == 'sqrt':
+        #         tally = str(sqrt(float(tally[:-4])))
+        if tally[-1] == 's':  # TODO доработать извлечение корня
+            print('извлекскаем корень')
+            tally = 'sqrt'
+        if '.' in tally:  # вычисления для чисел с точкой
             for action in actions:
                 if action in tally:
                     tally = tally.split(action)
@@ -102,7 +105,7 @@ def count():
     elif data == '+' or data == '-' or data == '*' or data == '/':
         number = calculating(number)+data
         return responser(number)
-    elif data == 'sqrt':
+    elif data == 's':
         number += data
         result = calculating(number)
         number = ''
