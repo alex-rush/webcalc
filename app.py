@@ -17,7 +17,7 @@ def calculating(tally):
         #     if tally[-4:] == 'sqrt':
         #         tally = str(sqrt(float(tally[:-4])))
         if tally[-1] == 's':  # TODO доработать извлечение корня
-            print('извлекскаем корень')
+            print('извлекаем корень')
             tally = 'sqrt'
         if '.' in tally:  # вычисления для чисел с точкой
             for action in actions:
