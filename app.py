@@ -1,4 +1,3 @@
-# 06-09-21
 from flask import Flask, render_template, request, make_response
 from decimal import Decimal
 from math import sqrt
@@ -10,15 +9,36 @@ app = Flask(__name__)
 
 def calculating(tally):
     """операции вычисления"""
+    def talling(tally):
+        actions = ['+', '-', '*', '/']
+        for action in actions:
+            if action in tally:
+                tally = tally.split(action)
+                dec1 = Decimal(tally[0])
+                dec2 = Decimal(tally[1])
+                if action == '+':
+                    tally = dec1 + dec2
+                elif action == '-':
+                    tally = dec1 - dec2
+                elif action == '*':
+                    tally = dec1 * dec2
+                elif action == '/':
+                    if tally[1] == '0':
+                        tally = 'ERROR'
+                    else:
+                        tally = dec1 / dec2
+        tally = float(tally)
+        return tally
+
+
     global actions
 
     try:
-        # if len(tally) >= 4:  # извлечение квадратного корня начало
-        #     if tally[-4:] == 'sqrt':
-        #         tally = str(sqrt(float(tally[:-4])))
-        if tally[-1] == 's':  # TODO доработать извлечение корня
-            print('извлекаем корень')
-            tally = 'sqrt'
+        # извлечение квадратного корня начало
+        if tally[-1] == 's':
+            tally = tally[:-1]
+            tally = str(sqrt(talling(tally)))
+
         if '.' in tally:  # вычисления для чисел с точкой
             for action in actions:
                 if action in tally:
