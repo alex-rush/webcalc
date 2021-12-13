@@ -91,6 +91,7 @@ def responser(result):
 def calculator():
     resp = make_response(render_template('calc.html'))
     resp.set_cookie('calc_cook', number)
+    resp.set_cookie('calc_mem', value='memory')
     return resp
 
 
@@ -132,6 +133,16 @@ def count():
         resp = make_response(render_template('indicator.html', number=result))
         resp.set_cookie('calc_cook', number)
         return resp
+    elif data == 'M':  # TODO работа с памятью
+        if number.isdigit():
+            mem = number
+            print('память = ', mem)
+            resp = make_response(render_template('indicator.html', number=number))
+            resp.set_cookie('calc_cook', number)
+            resp.set_cookie('calc_mem', mem)
+            return resp
+
+
     else:
         number += data
     return responser(number)
